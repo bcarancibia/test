@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Module 5 Homework</title>
+		<script type="text/javascript">
+			
+			//future reference: http://eddmann.com/posts/ten-ways-to-reverse-a-string-in-javascript/ 
+			function reverseOrder() {
+				s = document.assn5Form.strg.value;
+				rs = s.split("").reverse().join("");
+				document.assn5Form.rstrg.value = rs;
+			}
+			
+			//table future reference: http://www.seas.gwu.edu/~csci133/spring03/133s03recursion.html
+			function mult20() {
+				nmbr = document.assn5Form.nmbr.value;
+				if (!isNaN(nmbr)){
+					rs = "<h3>20 Multiples of " + nmbr + " in 5x4 order:</h3><p />";
+					rs = rs + "<table><tr><td align='right'>";
+					for (var i=1; i<=20; i++) {
+						rs = rs + nmbr * i + "</td><td>&nbsp;</td><td align='right'>";
+						if (i%4 == 0)
+							rs = rs + "</td></tr><tr><td align='right'>";
+					}
+					rs = rs + "</td></tr></table>";
+				}
+				else {
+					rs = "<b>Enter a valid number</b>";
+				}
+				document.getElementById("target").innerHTML = rs;
+			}
+			
+			function checkKey(evt) { 
+			  var evt = (evt) ? evt : ((event) ? event : null); 
+			  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+			  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+			} 
+			document.onkeypress = checkKey; 
+			
+		</script>
+	</head>
+	<body>
+		<hr>
+		<h4>Author: Benjamin Arancibia<br />Date: 11/5/2014<p />
+		Question 1:<br />Create a function to reverse any word that you type in.<p />
+		Question 2:<br />Create a function that takes an input number, and prints a table with the first 20 multiples of the number, in order 5x4</h4>
+		<hr>
+		<form name="assn5Form">
+			<table>
+				<tr>
+					<td>Enter a word/string:</td>
+					<td><input type="text" name="strg"></td>
+					<td><a href="#" onclick="javascript:reverseOrder();">
+						Go</a></td>
+				</tr><tr>
+					<td>In Reverse Order:</td>
+					<td colspan="2"><input type="text" name="rstrg" disabled></td>
+				</tr><tr>
+					<td colspan="3">&nbsp;<br></td>
+				</tr><tr>
+					<td>Enter a Number:</td>
+					<td><input name="nmbr" type="text"></td>
+					<td><a href="#" onclick="javascript:mult20();">
+						Go</a></td>
+				</tr>
+			</table>
+			<p />
+			<div id='target'></div>
+		</form>
+	</body>
+</html>

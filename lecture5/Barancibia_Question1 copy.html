@@ -1,0 +1,102 @@
+<html>
+<head>
+
+<title>HW Solutions Module 5 from Ben Arancibia</title>
+<h1>October 29th, 2014</h1>
+
+</head>
+
+<body>
+
+<h2>Question 1:Create a function to reverse any word that you type in.</h2>
+
+<p>
+<form name='reverseText'>
+    <input type="text" size="10" name='textInput'>
+    <input type="button" value="Go" onClick=docSubmit()>
+</form>
+</p>
+
+<div id="first"></div>
+
+
+<script type="text/javascript">
+//future reference: http://eddmann.com/posts/ten-ways-to-reverse-a-string-in-javascript/ 
+function reverseString(string){
+    var output = '';
+    for (i = 0; i < string.length; i++) {
+        output = string[i] + output;
+    }
+    return output
+};
+
+
+//write to DOM in order to display results
+function writetoDom(element, content){
+    var target = document.getElementById(element);
+    target.innerHTML = content;
+};
+
+
+
+function docSubmit(){
+    writetoDom('first', 
+               reverseString(document.reverseText.textInput.value)
+    );
+};
+
+</script>
+
+
+
+<br><br>
+<h2>Question 2: Create a function that takes an input number, and prints a table with the first 20 multiples of the number, in order 5x4</h2>
+
+<p>
+<form name='multTable'>
+    <input type="number" size="3" name='numInput'>
+    <input type="button" value="Create Table!" onClick=writeTable()>
+</form>
+</p>
+
+<div id="second"></div>
+
+<script type="text/javascript">
+
+function tableMake(elementArray, numColumns){
+    var numElements = elementArray.length;
+    var outputString = '<table>';
+
+    for (i = 0; i < numElements; i++){
+
+        if (i % numColumns ==0){outputString = outputString +'<tr>'};
+        outputString = outputString + '<td>'+ elementArray[i]+ '</td>';
+        if (i % numColumns ==numColumns-1){outputString = outputString +'</tr>'};
+    
+    };
+
+    outputString = outputString + '</table>';
+    return outputString
+};
+
+
+
+function makeMultiples(seed, count, by){
+    numArray = [];
+    for (i = 1; i <= count; i++) {numArray.push(seed * (by * i))};
+    return numArray
+}
+
+
+
+function writeTable(){
+    writeToDom('second',
+        tableMake(makeMultiples(document.multTable.numInput.value,20,1), 
+                  4
+        )
+    );
+};
+</script>
+
+</body>
+</html>
